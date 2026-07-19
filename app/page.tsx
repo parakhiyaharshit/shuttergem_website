@@ -1,25 +1,28 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 
 export default function Home() {
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
   return (
     <main className="bg-[#FDFBF7] text-[#1E1712] overflow-hidden">
       {/* HERO SECTION */}
       <section className="relative min-h-[70vh] md:h-screen w-full flex flex-col md:flex-row items-center justify-center bg-[#FDFBF7] md:bg-[#F4EFE6]/35 md:px-6">
-        {/* Background Image Container */}
+        {/* Background Video Container */}
         <div className="relative w-full aspect-[16/9] md:absolute md:inset-0 md:w-full md:h-full md:aspect-auto z-0 overflow-hidden">
-          {/* Fallback pattern or dynamic gradient until user uploads hero.jpg */}
+          {/* Fallback pattern or dynamic gradient */}
           <div className="absolute inset-0 bg-gradient-to-tr from-[#FDFBF7] via-[#F4EFE6]/40 to-[#FDFBF7] z-0 hidden md:block" />
-          <img
-            src="/images/hero.jpg"
-            alt="Luxury Wedding Portrait"
-            className="w-full h-full object-cover brightness-[0.95] scale-100 md:animate-kenburns opacity-95 md:opacity-90 z-10"
-            onError={(e) => {
-              // If image fails to load, gracefully hide it and keep the gradient
-              (e.target as HTMLElement).style.display = "none";
-            }}
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/images/hero.jpg"
+            className="w-full h-full object-cover brightness-[0.88] opacity-95 md:opacity-90 z-10"
+          >
+            <source src="/videos/hero.mp4" type="video/mp4" />
+          </video>
           {/* Frosted Gold Vignette (Desktop only to support overlay text legibility) */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7] via-[#FDFBF7]/60 to-transparent z-20 hidden md:block" />
         </div>
@@ -172,6 +175,63 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SHOWREEL/CINEMA SECTION */}
+      <section className="py-24 md:py-36 bg-[#F7F3EB]/30 px-6 border-b border-[#C5A059]/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <p className="text-xs uppercase tracking-[6px] text-[#C5A059] font-semibold">
+                Featured Cinema
+              </p>
+              <h2 className="text-3xl md:text-5xl font-serif font-light leading-snug">
+                Stories Told <br />
+                <span className="italic text-[#C5A059] font-serif">in Cinematic Motion</span>
+              </h2>
+              <div className="w-12 h-[1px] bg-[#C5A059]" />
+              <p className="text-[#70665E] leading-8 font-light text-sm md:text-base">
+                Our films are cinematic, emotional, and fine-art masterpieces. We believe motion pictures capture energy, audio, and details that photos can only whisper.
+              </p>
+              <p className="text-[#70665E] leading-8 font-light text-sm md:text-base">
+                Click the play button to watch our latest cinematic showreel. Experience how we capture luxury celebrations in motion.
+              </p>
+            </div>
+
+            {/* Video Preview Card */}
+            <div 
+              onClick={() => setActiveVideo("/videos/showreel.mp4")}
+              className="relative group cursor-pointer overflow-hidden rounded-3xl aspect-video bg-[#1E1712] shadow-xl border border-[#C5A059]/10 z-10"
+            >
+              {/* Autoplaying muted thumbnail video loop */}
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover opacity-80 group-hover:opacity-70 group-hover:scale-103 transition duration-700"
+              >
+                <source src="/videos/showreel.mp4" type="video/mp4" />
+              </video>
+              
+              {/* Play Button Overlay */}
+              <div className="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/25 transition duration-500">
+                <div className="w-20 h-20 rounded-full bg-[#C5A059] text-white flex items-center justify-center shadow-lg transform scale-100 group-hover:scale-110 transition duration-500">
+                  <svg className="w-8 h-8 fill-current translate-x-1" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Tag overlay */}
+              <div className="absolute bottom-6 left-6 z-20 bg-[#FDFBF7]/95 backdrop-blur-sm px-4 py-2 rounded-full border border-[#C5A059]/20 shadow-sm">
+                <span className="text-[10px] uppercase tracking-widest text-[#1E1712] font-semibold">
+                  ▶ Play Showreel • 2:40 Min
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* PORTFOLIO SECTION */}
       <section className="py-24 md:py-36 max-w-7xl mx-auto px-6 border-b border-[#C5A059]/10">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-6">
@@ -313,6 +373,34 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* VIDEO LIGHTBOX MODAL */}
+      {activeVideo && (
+        <div 
+          onClick={() => setActiveVideo(null)}
+          className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 transition-all duration-300"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-5xl w-full aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl border border-[#C5A059]/20"
+          >
+            <button
+              onClick={() => setActiveVideo(null)}
+              className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition shadow-lg"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <video 
+              src={activeVideo} 
+              controls 
+              autoPlay 
+              className="w-full h-full object-contain"
+            />
+          </div>
+        </div>
+      )}
     </main>
   );
 }

@@ -5,7 +5,8 @@ import { useState } from "react";
 interface PortfolioItem {
   id: number;
   src: string;
-  category: "wedding" | "pre-wedding" | "portrait";
+  category: "wedding" | "pre-wedding" | "portrait" | "film";
+  type?: "photo" | "video";
   title: string;
   location: string;
 }
@@ -19,6 +20,7 @@ export default function PortfolioPage() {
       id: 1,
       src: "/images/1.jpg",
       category: "wedding",
+      type: "photo",
       title: "Royal Palace Union",
       location: "City Palace, Udaipur",
     },
@@ -26,6 +28,7 @@ export default function PortfolioPage() {
       id: 2,
       src: "/images/2.jpg",
       category: "wedding",
+      type: "photo",
       title: "Sunset Serenade",
       location: "Grand Hyatt, Goa",
     },
@@ -33,6 +36,7 @@ export default function PortfolioPage() {
       id: 3,
       src: "/images/3.jpg",
       category: "pre-wedding",
+      type: "photo",
       title: "Desert Whisper",
       location: "Sam Sand Dunes, Jaisalmer",
     },
@@ -40,6 +44,7 @@ export default function PortfolioPage() {
       id: 4,
       src: "/images/4.jpg",
       category: "portrait",
+      type: "photo",
       title: "The Golden Veil",
       location: "Studio Portrait, Mumbai",
     },
@@ -47,15 +52,33 @@ export default function PortfolioPage() {
       id: 5,
       src: "/images/5.jpg",
       category: "wedding",
+      type: "photo",
       title: "Vows in the Hills",
       location: "Wildflower Hall, Shimla",
     },
     {
       id: 6,
-      src: "/images/6.jpg",
+      src: "/images/2.jpg", // Fallback copy for 6
       category: "pre-wedding",
+      type: "photo",
       title: "Classic Romance",
       location: "Gateway of India, Mumbai",
+    },
+    {
+      id: 7,
+      src: "/videos/wedding1.mp4",
+      category: "film",
+      type: "video",
+      title: "Royal Union Highlights",
+      location: "Umaid Bhawan Palace, Jodhpur",
+    },
+    {
+      id: 8,
+      src: "/videos/wedding2.mp4",
+      category: "film",
+      type: "video",
+      title: "Cinematic Pre-Wedding Story",
+      location: "Marine Drive, Mumbai",
     },
   ];
 
@@ -69,6 +92,7 @@ export default function PortfolioPage() {
     { value: "wedding", label: "Weddings" },
     { value: "pre-wedding", label: "Pre-Weddings" },
     { value: "portrait", label: "Portraits" },
+    { value: "film", label: "Cinematic Films" },
   ];
 
   return (
@@ -116,14 +140,35 @@ export default function PortfolioPage() {
               className="group cursor-pointer bg-white border border-[#C5A059]/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-[#C5A059]/30 transition duration-500 flex flex-col"
             >
               <div className="relative overflow-hidden aspect-[3/2] bg-[#F7F3EB]">
-                <img
-                  src={item.src}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-700 brightness-[0.98] group-hover:brightness-95"
-                  onError={(e) => {
-                    (e.target as HTMLElement).style.display = "none";
-                  }}
-                />
+                {item.type === "video" ? (
+                  <div className="w-full h-full relative">
+                    <video
+                      src={item.src}
+                      muted
+                      loop
+                      playsInline
+                      className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+                      onMouseOver={(e) => (e.target as HTMLVideoElement).play()}
+                      onMouseOut={(e) => (e.target as HTMLVideoElement).pause()}
+                    />
+                    {/* Video Badge Overlay */}
+                    <div className="absolute top-4 left-4 z-20 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10 text-white shadow-sm flex items-center gap-1.5">
+                      <svg className="w-3.5 h-3.5 fill-current text-[#C5A059]" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                      <span className="text-[9px] uppercase tracking-wider font-semibold">Film</span>
+                    </div>
+                  </div>
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-700 brightness-[0.98] group-hover:brightness-95"
+                    onError={(e) => {
+                      (e.target as HTMLElement).style.display = "none";
+                    }}
+                  />
+                )}
                 {/* Frosted Lens Hover Indicator */}
                 <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition duration-500 flex items-center justify-center">
                   <div className="w-12 h-12 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-[#C5A059] transform scale-90 group-hover:scale-100 transition duration-500">
@@ -171,16 +216,25 @@ export default function PortfolioPage() {
             </button>
 
             <div className="grid md:grid-cols-3">
-              {/* Image Area */}
+              {/* Media Area */}
               <div className="md:col-span-2 bg-[#F7F3EB] aspect-[3/2] md:aspect-auto md:h-[70vh] flex items-center justify-center overflow-hidden">
-                <img
-                  src={selectedItem.src}
-                  alt={selectedItem.title}
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLElement).style.display = "none";
-                  }}
-                />
+                {selectedItem.type === "video" ? (
+                  <video
+                    src={selectedItem.src}
+                    controls
+                    autoPlay
+                    className="w-full h-full object-contain bg-black"
+                  />
+                ) : (
+                  <img
+                    src={selectedItem.src}
+                    alt={selectedItem.title}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLElement).style.display = "none";
+                    }}
+                  />
+                )}
               </div>
 
               {/* Info Area */}
@@ -193,7 +247,9 @@ export default function PortfolioPage() {
                 </h2>
                 <div className="w-8 h-[1px] bg-[#C5A059] my-6" />
                 <p className="text-[#70665E] text-xs font-light leading-relaxed mb-8">
-                  Captured with creative precision, highlighting natural light, emotional chemistry, and spatial details.
+                  {selectedItem.type === "video" 
+                    ? "A cinematic high-definition wedding film crafted with custom soundscapes, dramatic grading, and emotion-driven pacing."
+                    : "Captured with creative precision, highlighting natural light, emotional chemistry, and spatial details."}
                 </p>
                 <div className="mt-auto space-y-2">
                   <p className="text-xs text-[#70665E] flex items-center gap-2">
@@ -201,8 +257,12 @@ export default function PortfolioPage() {
                     <span className="font-medium italic">{selectedItem.location}</span>
                   </p>
                   <p className="text-xs text-[#70665E] flex items-center gap-2">
-                    <span className="text-[#C5A059]">Camera:</span>
-                    <span className="font-medium">Sony A7R V • 50mm f/1.2 G-Master</span>
+                    <span className="text-[#C5A059]">Gear:</span>
+                    <span className="font-medium">
+                      {selectedItem.type === "video" 
+                        ? "Sony FX3 Cinema Line • G-Master Primes" 
+                        : "Sony A7R V • 50mm f/1.2 G-Master"}
+                    </span>
                   </p>
                 </div>
               </div>

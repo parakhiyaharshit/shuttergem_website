@@ -49,11 +49,11 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-2 gap-8 pt-4">
             <div className="space-y-2 border-l border-[#C5A059]/20 pl-4">
-              <p className="text-3xl font-serif text-[#C5A059] font-light">150+</p>
+              <p className="text-3xl font-serif text-[#C5A059] font-light">4+</p>
               <p className="text-xs uppercase tracking-widest text-[#70665E]">Weddings Captured</p>
             </div>
             <div className="space-y-2 border-l border-[#C5A059]/20 pl-4">
-              <p className="text-3xl font-serif text-[#C5A059] font-light">12+</p>
+              <p className="text-3xl font-serif text-[#C5A059] font-light">0</p>
               <p className="text-xs uppercase tracking-widest text-[#70665E]">Countries Visited</p>
             </div>
           </div>
