@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FDFBF7; /* Warm luxurious cream/off-white */
+  --foreground: #1E1712; /* Sophisticated warm charcoal/dark brown */
+  --gold: #C5A059;       /* Muted antique gold */
+  --gold-light: #F7F3EB; /* Soft champagne background */
+  --gold-dark: #9E7D3F;  /* Rich dark gold for contrast */
+  --gold-bright: #D4AF37; /* Brighter gold for highlights */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+  --color-gold-bright: var(--gold-bright);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom transitions and styles */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #A47E3B 0%, #D4AF37 50%, #C5A059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #C5A059 0%, #E6D5B8 50%, #A47E3B 100%);
+}
+
+.bg-gold-soft-gradient {
+  background: linear-gradient(180deg, #FDFBF7 0%, #F5EFE4 100%);
+}
+
+/* Luxury border accent */
+.border-gold-subtle {
+  border-color: rgba(197, 160, 89, 0.15);
+}
+
+/* Smooth custom animations */
+@keyframes kenburns {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns 30s ease-in-out infinite;
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
