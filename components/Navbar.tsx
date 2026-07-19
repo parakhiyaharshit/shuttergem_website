@@ -142,7 +142,7 @@ export default function Navbar() {
           </Link>
           <div className="text-xs text-[#70665E]">
             <p>Based in Mumbai • Capturing Worldwide</p>
-            <p className="mt-1">hello@shuttergem.com</p>
+            <p className="mt-1">shuttergem10@gmail.com</p>
           </div>
         </div>
       </div>

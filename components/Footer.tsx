@@ -83,13 +83,13 @@ export default function Footer() {
               <svg className="w-4 h-4 text-[#C5A059]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              <a href="tel:+919876543210" className="hover:text-[#C5A059] transition">+91 98765 43210</a>
+              <a href="tel:+919987562601" className="hover:text-[#C5A059] transition">+91 99875 62601</a>
             </p>
             <p className="flex items-center gap-3">
               <svg className="w-4 h-4 text-[#C5A059]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <a href="mailto:hello@shuttergem.com" className="hover:text-[#C5A059] transition">hello@shuttergem.com</a>
+              <a href="mailto:shuttergem10@gmail.com" className="hover:text-[#C5A059] transition">shuttergem10@gmail.com</a>
             </p>
           </div>
         </div>

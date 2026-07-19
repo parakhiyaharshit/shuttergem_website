@@ -6,31 +6,31 @@ export default function Home() {
   return (
     <main className="bg-[#FDFBF7] text-[#1E1712] overflow-hidden">
       {/* HERO SECTION */}
-      <section className="relative h-[90vh] md:h-screen w-full flex items-center justify-center px-6 bg-[#F4EFE6]/35">
-        {/* Background Image Container with Ken Burns effect */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
+      <section className="relative min-h-[70vh] md:h-screen w-full flex flex-col md:flex-row items-center justify-center bg-[#FDFBF7] md:bg-[#F4EFE6]/35 md:px-6">
+        {/* Background Image Container */}
+        <div className="relative w-full aspect-[16/9] md:absolute md:inset-0 md:w-full md:h-full md:aspect-auto z-0 overflow-hidden">
           {/* Fallback pattern or dynamic gradient until user uploads hero.jpg */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#FDFBF7] via-[#F4EFE6]/40 to-[#FDFBF7] z-0" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#FDFBF7] via-[#F4EFE6]/40 to-[#FDFBF7] z-0 hidden md:block" />
           <img
             src="/images/hero.jpg"
             alt="Luxury Wedding Portrait"
-            className="w-full h-full object-cover brightness-[0.93] scale-100 animate-kenburns opacity-90 z-10"
+            className="w-full h-full object-cover brightness-[0.95] scale-100 md:animate-kenburns opacity-95 md:opacity-90 z-10"
             onError={(e) => {
               // If image fails to load, gracefully hide it and keep the gradient
               (e.target as HTMLElement).style.display = "none";
             }}
           />
-          {/* Frosted Gold Vignette */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7] via-[#FDFBF7]/60 to-transparent z-20" />
+          {/* Frosted Gold Vignette (Desktop only to support overlay text legibility) */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7] via-[#FDFBF7]/60 to-transparent z-20 hidden md:block" />
         </div>
 
         {/* Content */}
-        <div className="relative z-30 max-w-4xl mx-auto text-center mt-8">
-          <p className="uppercase tracking-[8px] text-xs font-semibold text-[#A47E3B] mb-6">
+        <div className="relative z-30 max-w-4xl mx-auto text-center px-6 py-12 md:py-0 md:mt-8">
+          <p className="uppercase tracking-[8px] text-[10px] md:text-xs font-semibold text-[#A47E3B] mb-4 md:mb-6">
             Luxury Wedding Photography
           </p>
 
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-light tracking-wide leading-tight text-[#1E1712] mb-8">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-serif font-light tracking-wide leading-tight text-[#1E1712] mb-6 md:mb-8">
             YOUR WORLD
             <br />
             <span className="italic font-normal text-[#C5A059] font-serif">through our</span>
@@ -38,11 +38,11 @@ export default function Home() {
             LENS
           </h1>
 
-          <p className="text-sm md:text-base text-[#70665E] max-w-xl mx-auto leading-relaxed mb-12 tracking-wide font-light">
+          <p className="text-sm md:text-base text-[#70665E] max-w-xl mx-auto leading-relaxed mb-10 md:mb-12 tracking-wide font-light">
             Capturing timeless love stories, cinematic films, and premium editorial narratives. Preserving emotions into high-end visual heirlooms.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-5 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center items-center">
             <Link
               href="/portfolio"
               className="w-full sm:w-auto px-8 py-4 bg-[#C5A059] text-white rounded-full font-semibold hover:bg-[#9E7D3F] hover:shadow-lg transition-all duration-300 tracking-widest text-xs uppercase"
@@ -205,7 +205,7 @@ export default function Home() {
                   (e.target as HTMLElement).style.display = "none";
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
                 <div>
                   <p className="text-white text-xs uppercase tracking-widest mb-1 font-semibold">
                     Royal Celebration

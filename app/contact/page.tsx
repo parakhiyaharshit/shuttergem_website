@@ -14,13 +14,35 @@ export default function ContactPage() {
     message: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate API request
-    setTimeout(() => {
-      setIsSubmitted(true);
-    }, 800);
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setIsSubmitted(true);
+      } else {
+        setError(data.error || "Failed to send request. Please try again later.");
+      }
+    } catch (err) {
+      setError("Unable to connect to the mail server. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -67,14 +89,14 @@ export default function ContactPage() {
             <div className="space-y-2">
               <p className="text-xs uppercase tracking-widest text-[#C5A059] font-semibold">Emails</p>
               <p>
-                <a href="mailto:hello@shuttergem.com" className="hover:text-[#C5A059] transition">hello@shuttergem.com</a>
+                <a href="mailto:shuttergem10@gmail.com" className="hover:text-[#C5A059] transition">shuttergem10@gmail.com</a>
               </p>
             </div>
 
             <div className="space-y-2">
               <p className="text-xs uppercase tracking-widest text-[#C5A059] font-semibold">Phone</p>
               <p>
-                <a href="tel:+919876543210" className="hover:text-[#C5A059] transition">+91 98765 43210</a>
+                <a href="tel:+919987562601" className="hover:text-[#C5A059] transition">+91 9987562601</a>
               </p>
             </div>
 
@@ -175,7 +197,7 @@ export default function ContactPage() {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full bg-[#FDFBF7] border border-[#C5A059]/15 rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:border-[#C5A059] transition"
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 99875 62601"
                   />
                 </div>
               </div>
@@ -251,11 +273,18 @@ export default function ContactPage() {
                 />
               </div>
 
+              {error && (
+                <div className="bg-red-50 text-red-700 p-4 rounded-xl text-xs font-medium border border-red-200">
+                  {error}
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full py-4.5 bg-[#C5A059] text-white font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-[#9E7D3F] hover:shadow-xl transition-all duration-300"
+                disabled={isSubmitting}
+                className="w-full py-4 bg-[#C5A059] text-white font-semibold uppercase tracking-widest text-xs rounded-full hover:bg-[#9E7D3F] hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Request
+                {isSubmitting ? "Sending Request..." : "Send Request"}
               </button>
             </form>
           )}
