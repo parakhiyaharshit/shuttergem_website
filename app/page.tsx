@@ -100,7 +100,7 @@ export default function Home() {
             <div className="absolute -inset-4 border border-[#C5A059]/20 rounded-3xl translate-x-2 translate-y-2 group-hover:translate-x-0 group-hover:translate-y-0 transition duration-500 z-0" />
             <div className="overflow-hidden rounded-3xl relative bg-[#F7F3EB] aspect-[4/5] md:aspect-auto z-10 shadow-md">
               <img
-                src="/images/about.jpg"
+                src="/images/kirti.jpg"
                 alt="Elegant Wedding Portrait"
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
                 onError={(e) => {
@@ -198,7 +198,7 @@ export default function Home() {
 
             {/* Video Preview Card */}
             <div 
-              onClick={() => setActiveVideo("/videos/showreel.mp4")}
+              onClick={() => setActiveVideo("/videos/Ritik X Ankita Engagment Highlight.mov")}
               className="relative group cursor-pointer overflow-hidden rounded-3xl aspect-video bg-[#1E1712] shadow-xl border border-[#C5A059]/10 z-10"
             >
               {/* Autoplaying muted thumbnail video loop */}
@@ -207,9 +207,10 @@ export default function Home() {
                 muted
                 loop
                 playsInline
+                poster="/images/ritik_ankita/4.jpg"
                 className="w-full h-full object-cover opacity-80 group-hover:opacity-70 group-hover:scale-103 transition duration-700"
               >
-                <source src="/videos/showreel.mp4" type="video/mp4" />
+                <source src="/videos/Ritik X Ankita Engagment Highlight.mov" type="video/quicktime" />
               </video>
               
               {/* Play Button Overlay */}
@@ -252,13 +253,13 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
+          {[2, 3, 4, 5, 6].map((i) => (
             <div
               key={i}
-              className="relative group overflow-hidden rounded-2xl bg-[#F7F3EB] aspect-[3/2] shadow-sm"
+              className="relative group overflow-hidden rounded-2xl bg-[#F7F3EB] aspect-[2/3] shadow-sm"
             >
               <img
-                src={`/images/${i}.jpg`}
+                src={`/images/ritik_ankita/${i}.jpg`}
                 alt={`Wedding feature ${i}`}
                 className="w-full h-full object-cover group-hover:scale-105 transition duration-700 brightness-[0.98] group-hover:brightness-90"
                 onError={(e) => {
@@ -292,30 +293,18 @@ export default function Home() {
           <div className="w-12 h-[1px] bg-[#C5A059] mx-auto" />
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="flex flex-col gap-8 md:flex-row md:flex-wrap md:justify-center">
           {[
             {
               quote: "The photos are absolutely breathtaking! You captured details we didn't even notice ourselves. Shuttergem didn't just document our day, they turned our memories into cinema.",
-              names: "Aditi & Rohan",
-              event: "Palace Wedding, Udaipur",
-              bg: "/images/3.jpg"
-            },
-            {
-              quote: "Every single frame is high-fashion and emotional at the same time. The team was so professional and made us feel so comfortable. Truly a luxury photography experience.",
-              names: "Priya & Kabir",
-              event: "Beachside Wedding, Goa",
-              bg: "/images/2.jpg"
-            },
-            {
-              quote: "Their films are on another level. The sound design, colors, and pacing—it felt like watching a premium cinematic production. We cry every time we watch it.",
-              names: "Sanjana & Neil",
-              event: "Heritage Wedding, Jaipur",
-              bg: "/images/5.jpg"
+              names: "Ritik & Ankita",
+              event: "Engagement",
+              bg: "/images/ritik_ankita/3.jpg"
             }
           ].map((t, idx) => (
             <div
               key={idx}
-              className="relative overflow-hidden rounded-3xl p-10 min-h-[380px] flex flex-col justify-between group shadow-sm hover:shadow-xl hover:scale-[1.02] border border-[#C5A059]/10 transition-all duration-500"
+              className="relative w-full overflow-hidden rounded-3xl p-10 min-h-[380px] flex flex-col justify-between group shadow-sm hover:shadow-xl hover:scale-[1.02] border border-[#C5A059]/10 transition-all duration-500 md:w-[calc((100%-4rem)/3)]"
             >
               {/* Background Image with Zoom */}
               <div className="absolute inset-0 z-0">
@@ -328,7 +317,7 @@ export default function Home() {
                   }}
                 />
                 {/* Light semi-transparent overlay (No blur, clear photo) */}
-                <div className="absolute inset-0 bg-[#FDFBF7]/70 group-hover:bg-[#FDFBF7]/60 transition-all duration-500" />
+                <div className="absolute inset-0 bg-[#FDFBF7]/50 group-hover:bg-[#FDFBF7]/60 transition-all duration-500" />
               </div>
 
               {/* Content Overlay */}

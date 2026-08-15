@@ -18,47 +18,47 @@ export default function PortfolioPage() {
   const portfolioItems: PortfolioItem[] = [
     {
       id: 1,
-      src: "/images/1.jpg",
-      category: "wedding",
-      type: "photo",
-      title: "Royal Palace Union",
-      location: "City Palace, Udaipur",
-    },
-    {
-      id: 2,
-      src: "/images/2.jpg",
+      src: "/images/ritik_ankita/2.jpg",
       category: "wedding",
       type: "photo",
       title: "Sunset Serenade",
       location: "Grand Hyatt, Goa",
     },
     {
-      id: 3,
-      src: "/images/3.jpg",
+      id: 2,
+      src: "/images/ritik_ankita/3.jpg",
       category: "pre-wedding",
       type: "photo",
       title: "Desert Whisper",
       location: "Sam Sand Dunes, Jaisalmer",
     },
     {
-      id: 4,
-      src: "/images/4.jpg",
+      id: 3,
+      src: "/images/ritik_ankita/4.jpg",
       category: "portrait",
       type: "photo",
       title: "The Golden Veil",
       location: "Studio Portrait, Mumbai",
     },
     {
-      id: 5,
-      src: "/images/5.jpg",
-      category: "wedding",
+      id: 4,
+      src: "/images/ritik_ankita/6.jpg", // Fallback copy for 6
+      category: "pre-wedding",
       type: "photo",
-      title: "Vows in the Hills",
-      location: "Wildflower Hall, Shimla",
+      title: "Classic Romance",
+      location: "Gateway of India, Mumbai",
+    },
+    {
+      id: 5,
+      src: "/images/ritik_ankita/7.jpg", // Fallback copy for 6
+      category: "pre-wedding",
+      type: "photo",
+      title: "Classic Romance",
+      location: "Gateway of India, Mumbai",
     },
     {
       id: 6,
-      src: "/images/2.jpg", // Fallback copy for 6
+      src: "/images/ritik_ankita/8.jpg", // Fallback copy for 6
       category: "pre-wedding",
       type: "photo",
       title: "Classic Romance",
@@ -66,7 +66,7 @@ export default function PortfolioPage() {
     },
     {
       id: 7,
-      src: "/videos/wedding1.mp4",
+      src: "videos/Ritik X Ankita Couple Reel.mov",
       category: "film",
       type: "video",
       title: "Royal Union Highlights",
@@ -139,7 +139,7 @@ export default function PortfolioPage() {
               onClick={() => setSelectedItem(item)}
               className="group cursor-pointer bg-white border border-[#C5A059]/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:border-[#C5A059]/30 transition duration-500 flex flex-col"
             >
-              <div className="relative overflow-hidden aspect-[3/2] bg-[#F7F3EB]">
+              <div className="relative overflow-hidden aspect-[2/3] bg-[#F7F3EB]">
                 {item.type === "video" ? (
                   <div className="w-full h-full relative">
                     <video
@@ -229,7 +229,7 @@ export default function PortfolioPage() {
                   <img
                     src={selectedItem.src}
                     alt={selectedItem.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                     onError={(e) => {
                       (e.target as HTMLElement).style.display = "none";
                     }}
